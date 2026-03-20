@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "692739401987",
+    "project_id": "nsbmunch-77bd9",
+    "storage_bucket": "nsbmunch-77bd9.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:692739401987:android:8266c4a52c50c11f576136",
+        "android_client_info": {
+          "package_name": "com.example.nsbmunch"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNWBhJzfBbhI6_6YG5TjxEGt_iSd1OdW8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
