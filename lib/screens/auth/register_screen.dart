@@ -331,12 +331,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 // password
                 AppTextField(
                   label: 'Password',
-                  hint: 'At least 6 characters',
+                  hint: 'At least 8 characters',
                   controller: _passCtrl,
                   isPassword: true,
                   validator: (v) {
                     if (v == null || v.isEmpty) return 'Enter a password';
-                    if (v.length < 6) return 'At least 6 characters';
+                    if (v.length < 8) return 'At least 8 characters';
                     return null;
                   },
                 ),
