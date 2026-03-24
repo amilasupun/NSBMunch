@@ -175,7 +175,7 @@ NSBMunch/
 
 | Name | Student ID | Responsibilities |
 |------|-----------|-----------------|
-| Medagama Gunarathna | 10967150 | Project Lead, System Testing, Documentation |
+| Medagama Gunarathna | 10967150 | Project Lead, System Testing, Documentation, Admin Panel |
 | Amila Hettiarachchi | 10967157 | User Authentication Module (Login, Register, AuthService) |
 | Lekam Hasaranga | 10967152 | Flutter UI Implementation across multiple screens |
 | Andrew Jansen | 10967084 | Cloud Functions, Payment Model, Bank Account Management |
@@ -183,7 +183,7 @@ NSBMunch/
 | Gunawardana Gunawardana | 10967304 | Firebase Backend, Scheduled Auto-Pay, Push Notifications, Real-time Order Tracking |
 | Isuli Dadigama | 10967196 | Shopping Cart, Food Browsing, Category Filtering and Search |
 | Isira Piyarathna | 10967191 | Firestore Database Schema, Data Models, Security Rules |
-| Ranthati Rathnasiri | 10967197 | Dashboard UI Design, Admin Panel, Sales Screen |
+| Ranthati Rathnasiri | 10967197 | Dashboard UI Design, Sales Screen |
 
 ---
 
