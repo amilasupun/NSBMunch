@@ -4,6 +4,11 @@ import 'firebase_options.dart';
 import 'core/constants/app_colors.dart';
 import 'core/services/notification_service.dart';
 import 'screens/auth/login_screen.dart';
+import 'core/services/auth_service.dart';
+import 'core/constants/app_strings.dart';
+import 'screens/student/student_home.dart';
+import 'screens/vendor/vendor_home.dart';
+import 'screens/admin/admin_home.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -28,7 +33,54 @@ class NSBMunchApp extends StatelessWidget {
         useMaterial3: true,
         scaffoldBackgroundColor: AppColors.background,
       ),
-      home: const LoginScreen(),
+      home: const AuthWrapper(),
+    );
+  }
+}
+class AuthWrapper extends StatelessWidget {
+  const AuthWrapper({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final authService = AuthService();
+
+    return StreamBuilder(
+      stream: authService.authStateChanges,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const Scaffold(
+            backgroundColor: AppColors.background,
+            body: Center(
+              child: CircularProgressIndicator(color: AppColors.green),
+            ),
+          );
+        }
+
+        if (snapshot.hasData && snapshot.data != null) {
+          return FutureBuilder<String?>(
+            future: authService.getCurrentUserRole(),
+            builder: (context, roleSnapshot) {
+              if (roleSnapshot.connectionState == ConnectionState.waiting) {
+                return const Scaffold(
+                  backgroundColor: AppColors.background,
+                  body: Center(
+                    child: CircularProgressIndicator(color: AppColors.green),
+                  ),
+                );
+              }
+
+              final role = roleSnapshot.data;
+              if (role == AppStrings.admin) return const AdminHome();
+              if (role == AppStrings.vendor) return const VendorHome();
+              if (role == AppStrings.student) return const StudentHome();
+
+              return const LoginScreen();
+            },
+          );
+        }
+
+        return const LoginScreen();
+      },
     );
   }
 }
