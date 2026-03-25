@@ -134,6 +134,31 @@ class AuthService {
     }
   }
 
+  Future<String?> getCurrentUserRole() async {
+    try {
+      final user = _auth.currentUser;
+      if (user == null) return null;
+
+      if (user.email == AppStrings.adminEmail) return AppStrings.admin;
+
+      final doc = await _db.collection('users').doc(user.uid).get();
+      final data = doc.data() ?? {};
+      final String role = data['role'] ?? AppStrings.student;
+      final String status = data['status'] ?? 'active';
+
+      if (role == AppStrings.vendor &&
+          (status == 'pending' || status == 'rejected')) {
+        await _auth.signOut();
+        return null;
+      }
+
+      return role;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  Stream<User?> get authStateChanges => _auth.authStateChanges();
   // logout
   Future<void> logout() async {
     await _auth.signOut();
