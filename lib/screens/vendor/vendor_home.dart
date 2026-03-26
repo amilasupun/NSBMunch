@@ -17,6 +17,18 @@ class VendorHome extends StatefulWidget {
 
 class _VendorHomeState extends State<VendorHome> {
   int _tab = 0;
+String _shopName = AppStrings.appName;
+
+@override
+void initState() {
+  super.initState();
+  _loadShopName();
+}
+
+Future<void> _loadShopName() async {
+  final name = await AuthService().getShopName();
+  if (mounted) setState(() => _shopName = name ?? AppStrings.appName);
+}
 
   Future<void> _logout() async {
     await AuthService().logout();
@@ -35,9 +47,9 @@ class _VendorHomeState extends State<VendorHome> {
       appBar: AppBar(
         backgroundColor: Colors.black,
         elevation: 0,
-        title: const Text(
-          AppStrings.appName,
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+        title: Text(
+          _shopName,
+          style: const TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
         actions: [
           // Logout button
