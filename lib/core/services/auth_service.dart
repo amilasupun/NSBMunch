@@ -159,6 +159,16 @@ class AuthService {
   }
 
   Stream<User?> get authStateChanges => _auth.authStateChanges();
+  Future<String?> getShopName() async {
+  try {
+    final user = _auth.currentUser;
+    if (user == null) return null;
+    final doc = await _db.collection('users').doc(user.uid).get();
+    return doc.data()?['shopName'] as String?;
+  } catch (_) {
+    return null;
+  }
+}
   // logout
   Future<void> logout() async {
     await _auth.signOut();
